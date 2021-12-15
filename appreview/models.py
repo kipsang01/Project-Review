@@ -14,7 +14,7 @@ from cloudinary.models import CloudinaryField
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500,blank=True)
-    profile_pic = CloudinaryField('profile_pic')
+    profile_pic = CloudinaryField('image')
     location = models.CharField(max_length=100,blank=True)
     
     def __str__(self):
@@ -35,7 +35,7 @@ class Post(models.Model):
     description = models.TextField(max_length=500)
     live_link = models.CharField(max_length=50,blank=True)
     author = models.ForeignKey(User,related_name='posts', on_delete=models.CASCADE)
-    date_posted = models.DateField(auto_now_add=True)
+    date_posted = models.DateTimeField(auto_now_add=True)
     
     
     def __str__(self):
