@@ -19,6 +19,7 @@ from decouple import config,Csv
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -91,6 +92,7 @@ cloudinary.config(
   cloud_name = config('cloud_name'), 
   api_key = config('api_key'),
   api_secret = config('api_secret'), 
+  secure = True
 )
 # development
 if config('MODE')=="dev":
@@ -170,6 +172,7 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
    
 # configuring the location for media
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 

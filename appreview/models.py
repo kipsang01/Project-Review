@@ -35,7 +35,7 @@ class Post(models.Model):
     description = models.TextField(max_length=500)
     live_link = models.CharField(max_length=50,blank=True)
     author = models.ForeignKey(User,related_name='posts', on_delete=models.CASCADE)
-    date_posted = models.DateField(default=timezone.now)
+    date_posted = models.DateField(auto_now_add=True)
     
     
     def __str__(self):
