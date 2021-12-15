@@ -89,11 +89,10 @@ MODE=config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
 cloudinary.config( 
-  cloud_name = config('cloud_name'), 
-  api_key = config('api_key'),
-  api_secret = config('api_secret'), 
-  secure = True
-)
+    cloud_name = 'dscpb1dnd',
+    api_key = '322466197392728',
+    api_secret = 'y2nFHzeXBiwsXYTbeSdH9QJaz20'
+    )
 # development
 if config('MODE')=="dev":
    DATABASES = {
