@@ -1,0 +1,123 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load mathfilters %}
+{% load static %}
+<div class="container">
+    <div class="row ">
+        <div class="image-card">
+            <img src="{{ post.screenshot.url}}" alt="" class="img-fluid">
+        </div>
+        <div class="text-desc text-center">
+            <h3><b>{{post.title}}</b></h3>
+            <h6>BY <span class="">{{post.author}}</span> FROM {{post.author.location}}</h6>
+            
+            <p>Content   Design   Usability</p>
+            <a href="{{post.live_link}}"><button class="button-18" role="button">visit site</button></a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="description text-center mt-5">
+            <p>{{ post.description}}</p>
+        </div>
+    </div>
+    <div class="row">
+       <div class="formgrp shadow p-3 mb-5 bg-body rounded">
+       {% if rated is not None %}
+            <p class = "text-muted">You have submitted your rating</p>
+       {% else %}
+            <h5>Submit your rating</h5>
+            <form action="" method="POST">
+                {%csrf_token%}
+                <div class="row align-items-center g-3">
+                <div class="col-auto">
+                {{form.content_rating.label}}
+                {{form.content_rating}}
+                <span class="value"></span>
+                </div>
+                <div class="col-auto">
+                    {{form.usability_rating.label}}
+                    {{form.usability_rating}}
+                    <span class="value"></span>
+                </div>
+                <div class="col-auto">
+                    {{form.design_rating.label}}
+                    {{form.design_rating}}
+                    <span class="value"></span>
+                </div>
+                <div class="col-auto m-3">
+                    <input type="submit" class="btn btn-primary btn-sm" >
+                    </div>
+                </div> 
+            </form>
+       {% endif%}
+       </div>
+    </div>
+    <hr>
+    <div class="row mt-3">
+        <h5 class="ml-5"><u>{{post.ratings.count}} Ratings</u></h5>
+    
+        <div class="listgroup shadow p-3 mb-5 bg-body rounded">
+
+            {% for rating in post.ratings.all%}
+
+                    <span type="" class="list-group-item ">
+                        <div class="row">
+                        <div class="col-md-6 col-sm-6">
+                            {% if post.author.profile.profile_pic%}
+                            <img src="{{user.profile.profile_pic.url}}" alt="" class="icon-profile">
+                            {% else%} 
+                            <img src="{% static 'profile.png' %}" alt="" class="icon-profile">
+                            {% endif%}
+                            {{rating.author }}
+                        </div>
+                        <div class="col-md-1 col-sm-6">
+                            <div class="progress blue" data-value={{rating.design_rating}}>
+                                <span class="progress-left">
+                                    <span class="progress-bar"></span>
+                                </span>
+                                <span class="progress-right">
+                                    <span class="progress-bar"></span>
+                                </span>
+                                <div class="progress-value"> {{rating.design_rating }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-6">
+                            <div class="progress yellow">
+                                <span class="progress-left">
+                                    <span class="progress-bar"></span>
+                                </span>
+                                <span class="progress-right">
+                                    <span class="progress-bar"></span>
+                                </span>
+                                <div class="progress-value">{{rating.content_rating }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-1 col-sm-6">
+                            <div class="progress pink">
+                                <span class="progress-left">
+                                    <span class="progress-bar"></span>
+                                </span>
+                                <span class="progress-right">
+                                    <span class="progress-bar"></span>
+                                </span>
+                                <div class="progress-value">{{rating.usability_rating }}</div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-2"> 
+                            <span class="fs-1"> {{rating.design_rating|add:rating.content_rating|add:rating.usability_rating|intdiv:3}}</span>
+
+                        </div>
+                        </div>
+                    </span>
+            {% endfor%}
+        </div>
+    </div>
+
+    </div>
+    </div>
+
+    </div>
+</div>
+
+    {% endblock %}

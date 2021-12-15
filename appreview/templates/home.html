@@ -1,0 +1,40 @@
+{% extends 'base.html'%}
+{% block content %}
+{% load static%}
+<div class="container home">
+    <div class="row">
+
+    </div>
+
+    <div class="row">
+        {% for post in posts%}
+        <div class="column">
+            <a href="{% url 'post' post.id %}"style="text-decoration: none">
+                <div class="card ">
+                <div class="card-body">
+                    <div class="image">
+                        <img src="{{ post.screenshot.url}}" alt="" class="">
+                    </div>
+                    <a href="{{post.live_link}}"><button class="button-18" role="button">visit site</button></a>
+                </div>
+                <div class="card-footer">
+                    <p class="text-bold fs-4">{{post.title}}</p> <br>
+                    <p class="mb-2"> <span class="float-left">From {% if post.author.location%}{{post.author.location}}{% else %} <i>Unknown</i>{% endif %}</span><span  class="float-right">{{post.date_posted}} </span></p>
+                    <hr>
+                    {% if post.author.profile.profile_pic%}
+                  <img src="{{user.profile.profile_pic.url}}" alt="" class="icon-profile">
+                  {% else%} 
+                  <img src="{% static 'profile.png' %}" alt="" class="icon-profile">
+                  {% endif%}
+                    <a href="{% url 'profile' post.author.username %}">By .{{post.author}}</a>
+                </div>
+                
+                </div>
+            </a>
+        </div>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

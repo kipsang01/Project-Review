@@ -1,0 +1,20 @@
+{% extends 'base.html'%}
+{% block content %}
+{%load crispy_forms_tags %} 
+<div class="container">
+    <div class="text-center mt-3"> <h2 style="font-size :38px; font: weight 800px;">Sign In</h2></div>
+    <hr class=" m-auto w-50">
+    <div class="postform w-50 mt-3 m-auto shadow p-3 mb-5 bg-body rounded">
+        <form action="" method='POST' enctype="multipart/form-data" >
+            {% csrf_token%}
+            {{form|crispy}}
+            <div class="form-group m-3">
+                <input type="submit" class="btn btn-primary btn-sm" value="Sign In" >
+            </div>
+            <p class="text-center">Do not have account yet? Register<a href="/accounts/register"> here</a></p>
+        </form>
+    </div>
+
+</div>
+
+{% endblock %}
