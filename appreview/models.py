@@ -7,13 +7,14 @@ from django.db.models.functions import Coalesce
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.core.validators import MaxValueValidator, MinValueValidator
+from cloudinary.models import CloudinaryField
 
 
 # Creating profile
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(max_length=500,blank=True)
-    profile_pic = models.ImageField(upload_to = 'images/') 
+    profile_pic = CloudinaryField('profile_pic')
     location = models.CharField(max_length=100,blank=True)
     
     def __str__(self):
@@ -29,7 +30,7 @@ class Profile(models.Model):
         instance.profile.save()
  #post   
 class Post(models.Model):
-    screenshot = models.ImageField(upload_to = 'images/')
+    screenshot = CloudinaryField('image')
     title = models.CharField(max_length=50)
     description = models.TextField(max_length=500)
     live_link = models.CharField(max_length=50,blank=True)
