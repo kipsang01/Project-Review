@@ -1,14 +1,17 @@
 {% extends 'base.html'%}
 {% block content %}
 {% load static%}
-<div class="container home">
-    <div class="row">
-
+<div class="container-fluid  home">
+    <div class="row coverimage ">
+        <div class="text-center mt-3 mb-3 text-light">
+            <h2>Awwards</h2>
+            <p>Show off your work </p>
+        </div>
     </div>
 
     <div class="row">
         {% for post in posts%}
-        <div class="column">
+        <div class="column mt-3 d-flex justify-content-center">
             <a href="{% url 'post' post.id %}"style="text-decoration: none">
                 <div class="card ">
                 <div class="card-body">
