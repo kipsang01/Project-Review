@@ -48,7 +48,7 @@ profiles:
     https://awwardsapp1.herokuapp.com/Api/profiles
     ```
 # Live link
-This project is hosted in heroku [Bonga App](https://awwardsapp1.herokuapp.com/)
+This project is hosted in heroku [Awwards App](https://awwardsapp1.herokuapp.com/)
 
 # Contact details
 * Email: enock.kipsang@student.moringaschool.com
